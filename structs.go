@@ -24,7 +24,7 @@ func main() {
 	//	time.Now(),
 	//}
 
-	appUser, err := user.NewUser(userFirstName, userLastName, userBirthdate)
+	appUser, err := user.New(userFirstName, userLastName, userBirthdate)
 
 	// if the args are not valid then return and stop the application
 	if err != nil {

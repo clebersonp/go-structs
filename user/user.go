@@ -28,8 +28,8 @@ func (u *User) ClearUserFullName() {
 	u.lastName = ""
 }
 
-// NewUser this is a utility method, a convention or pattern it's not a Go feature to creation structs
-func NewUser(firstName, lastName, birthdate string) (*User, error) {
+// New this is a utility method, a convention or pattern it's not a Go feature to creation structs
+func New(firstName, lastName, birthdate string) (*User, error) {
 	// adding validation for utility struct constructor
 	if firstName == "" || lastName == "" || birthdate == "" {
 		return nil, errors.New("first name, last name and birthdate are required")

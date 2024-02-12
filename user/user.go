@@ -15,6 +15,15 @@ type User struct {
 	createdAt time.Time
 }
 
+type Admin struct {
+	email    string
+	password string
+
+	// embedding User struct as an Admin field
+	// this way we are using anonymous type, but we can use a field name if we wish
+	User
+}
+
 // OutputUserDetails - in Go we don't create methods inside struct, but we ref the method to struct by using a 'Receiver'.
 // Receiver must be after func keyword but before the method name.
 // We link these two pieces together by a 'Receiver'
@@ -41,4 +50,18 @@ func New(firstName, lastName, birthdate string) (*User, error) {
 		birthDate: birthdate,
 		createdAt: time.Now(),
 	}, nil
+}
+
+// NewAdmin is a pattern to construct Admin struct
+func NewAdmin(email, password string) Admin {
+	return Admin{
+		email:    email,
+		password: password,
+		User: User{
+			firstName: "ADMIN",
+			lastName:  "ADMIN",
+			birthDate: "-------",
+			createdAt: time.Time{},
+		},
+	}
 }

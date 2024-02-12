@@ -36,6 +36,15 @@ func main() {
 	appUser.OutputUserDetails()
 	appUser.ClearUserFullName()
 	appUser.OutputUserDetails()
+
+	fmt.Println("----------------------------------------------")
+
+	// construct Admin struct, like inheritance
+	admin := user.NewAdmin("test@example.com", "test123")
+	// because we are using anonymous User type of Admin struct, we can access all methods of User struct directly
+	admin.OutputUserDetails()
+	admin.ClearUserFullName()
+	admin.OutputUserDetails()
 }
 
 func getUserData(promptText string) string {

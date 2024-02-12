@@ -5,6 +5,14 @@ import (
 	"fmt"
 )
 
+// Create an alias for every built-in types
+type str string
+
+// Create method to alias custom type
+func (text str) log() {
+	fmt.Println(text)
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -45,6 +53,10 @@ func main() {
 	admin.OutputUserDetails()
 	admin.ClearUserFullName()
 	admin.OutputUserDetails()
+
+	fmt.Println("----------------------------------------------")
+	var someName str = "Tiago - custom type - str alias for string type"
+	someName.log()
 }
 
 func getUserData(promptText string) string {

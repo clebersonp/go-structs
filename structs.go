@@ -25,13 +25,24 @@ func (u *user) clearUserFullName() {
 	u.lastName = ""
 }
 
+// this is a utility method, a convention or pattern it's not a Go feature to creation structs
+func newUser(firstName, lastName, birthdate string) *user {
+	return &user{
+		firstName: firstName,
+		lastName:  lastName,
+		birthDate: birthdate,
+		createdAt: time.Now(),
+	}
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
 	userBirthdate := getUserData("Please enter your userBirthdate (MM/DD/YYYY): ")
 
 	// Struct literal or composite literal (instantiate a struct)
-	var appUser user
+	// pointer of user struct
+	var appUser *user
 
 	//appUser = user{} // user with all fields with 'null value' (default values)
 	// short notation without specify the field names
@@ -42,12 +53,7 @@ func main() {
 	//	time.Now(),
 	//}
 
-	appUser = user{
-		firstName: userFirstName,
-		lastName:  userLastName,
-		birthDate: userBirthdate,
-		createdAt: time.Now(),
-	}
+	appUser = newUser(userFirstName, userLastName, userBirthdate)
 
 	// this is a user method
 	appUser.outputUserDetails()

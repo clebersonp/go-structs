@@ -15,8 +15,14 @@ type user struct {
 // in Go we don't create methods inside struct, but we ref the method to struct by using a 'Receiver'.
 // Receiver must be after func keyword but before the method name.
 // We link these two pieces together by a 'Receiver'
-func (u user) outputUserDetails() {
+func (u *user) outputUserDetails() {
 	fmt.Println(u.firstName, u.lastName, u.birthDate)
+}
+
+// in Go every thing is passed as copy, so in this case we need to use a pointer to guaranty that the same object pointer is passed here
+func (u *user) clearUserFullName() {
+	u.firstName = ""
+	u.lastName = ""
 }
 
 func main() {
@@ -44,6 +50,8 @@ func main() {
 	}
 
 	// this is a user method
+	appUser.outputUserDetails()
+	appUser.clearUserFullName()
 	appUser.outputUserDetails()
 }
 

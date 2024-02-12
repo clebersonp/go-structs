@@ -12,6 +12,13 @@ type user struct {
 	createdAt time.Time
 }
 
+// in Go we don't create methods inside struct, but we ref the method to struct by using a 'Receiver'.
+// Receiver must be after func keyword but before the method name.
+// We link these two pieces together by a 'Receiver'
+func (u user) outputUserDetails() {
+	fmt.Println(u.firstName, u.lastName, u.birthDate)
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -36,19 +43,8 @@ func main() {
 		createdAt: time.Now(),
 	}
 
-	outputUserDetails(&appUser) // get the memory address of appUser with &
-
-	// ... do something awesome with that gathered data!
-
-	fmt.Println(userFirstName, userLastName, userBirthdate)
-}
-
-// *user (* pointer and user is a type) - pointer of user struct
-func outputUserDetails(u *user) {
-
-	// *u is a deref of a pointer user
-	// in Go is automatically. We don't need to use a deref (*u)
-	fmt.Println((*u).firstName, u.lastName, u.birthDate)
+	// this is a user method
+	appUser.outputUserDetails()
 }
 
 func getUserData(promptText string) string {

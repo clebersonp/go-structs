@@ -36,15 +36,19 @@ func main() {
 		createdAt: time.Now(),
 	}
 
-	outputUserDetails(appUser)
+	outputUserDetails(&appUser) // get the memory address of appUser with &
 
 	// ... do something awesome with that gathered data!
 
 	fmt.Println(userFirstName, userLastName, userBirthdate)
 }
 
-func outputUserDetails(u user) {
-	fmt.Println(u.firstName, u.lastName, u.birthDate)
+// *user (* pointer and user is a type) - pointer of user struct
+func outputUserDetails(u *user) {
+
+	// *u is a deref of a pointer user
+	// in Go is automatically. We don't need to use a deref (*u)
+	fmt.Println((*u).firstName, u.lastName, u.birthDate)
 }
 
 func getUserData(promptText string) string {

@@ -20,6 +20,15 @@ func main() {
 	// Struct literal or composite literal (instantiate a struct)
 	var appUser user
 
+	//appUser = user{} // user with all fields with 'null value' (default values)
+	// short notation without specify the field names
+	//appUser = user{
+	//	userFirstName,
+	//	userLastName,
+	//	userBirthdate,
+	//	time.Now(),
+	//}
+
 	appUser = user{
 		firstName: userFirstName,
 		lastName:  userLastName,

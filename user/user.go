@@ -8,6 +8,7 @@ import (
 
 // User - To export user struct and their access fields, we need to upper case the first letter
 type User struct {
+	// these lower case field names are not exposed to outside of user package - like private fields
 	firstName string
 	lastName  string
 	birthDate string
